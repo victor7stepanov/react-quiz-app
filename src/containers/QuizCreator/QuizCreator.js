@@ -5,6 +5,7 @@ import Input from '../../components/UI/Input/Input'
 import Select from '../../components/UI/Select/Select'
 import { createControl, validate, validateForm } from '../../form/formFramework'
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary'
+import axios from '../../axios/axios-quiz'
 
 function createOptionControl(number) {
   return createControl({
@@ -70,11 +71,36 @@ export default class QuizCreator extends Component {
     })
   }
 
-  createQuizHandler = event => {
+  // createQuizHandler = event => {
+  //   event.preventDefault()
+  //
+  //   axios.post('https://react-js-quiz-app-default-rtdb.europe-west1.firebasedatabase.app/quizes.json', this.state.quiz)
+  //       .then(response => {
+  //         console.log(response)
+  //       })
+  //       .catch(error => console.log(error))
+  //
+  //   console.log(this.state.quiz)
+  // }
+
+  createQuizHandler = async event => {
     event.preventDefault()
 
-    console.log(this.state.quiz)
-    // TODO: Server
+    try {
+      // const response = await axios.post('https://react-js-quiz-app-default-rtdb.europe-west1.firebasedatabase.app/quizes.json', this.state.quiz)
+      // console.log(response.data)
+      await axios.post('/quizes.json', this.state.quiz)
+
+      this.setState({
+        quiz: [],
+        isFormValid: false,
+        rightAnswerId: 1,
+        formControls: createFormControls()
+      })
+
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   changeHandler = (value, controlName) => {
