@@ -1,3 +1,7 @@
-# React Quiz App
+# Quiz App
 
-Used technologies and tools: CSS, React.js, WebStorm, Git, Firebase (for hosting).
+The app created for working with quiz
+
+Implemented features: authorization, registration, logout, quiz creating, quiz solving 
+
+Used technologies and tools: React.js, Redux, WebStorm, Git, Firebase (for hosting)
